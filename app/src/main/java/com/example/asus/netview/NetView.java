@@ -9,6 +9,7 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -55,9 +56,10 @@ public class NetView extends View {
         mNetColor = typeArray.getColor(R.styleable.NetView_netColor, Color.BLUE);
         mPointColor = typeArray.getColor(R.styleable.NetView_pointColor, Color.YELLOW);
         mTextColor = typeArray.getColor(R.styleable.NetView_texttColor, Color.BLACK);
-        mTextSize = typeArray.getInt(R.styleable.NetView_textSize, 30);
+        mTextSize = typeArray.getDimensionPixelSize(R.styleable.NetView_textSize, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
+                20, getResources().getDisplayMetrics()));
         mLayerNum = typeArray.getInt(R.styleable.NetView_layerNum, 3);
-        mMaxValue=typeArray.getFloat(R.styleable.NetView_maxValue,100);
+        mMaxValue = typeArray.getFloat(R.styleable.NetView_maxValue, 100);
 
         typeArray.recycle();
     }
@@ -172,50 +174,45 @@ public class NetView extends View {
         canvas.drawPath(path, paint);
     }
 
-
+    //设置边数，也可以不用设置，会根据传进的list长度进行绘制
     public void setEdgeNum(int mEdgeNum) {
         this.mEdgeNum = mEdgeNum;
     }
-
+    //设置蜘蛛网的层数，默认为3层
     public void setLayerNum(int mLayerNum) {
         this.mLayerNum = mLayerNum;
     }
-
+    //设置最大值
     public void setMaxValue(float mMaxValue) {
         this.mMaxValue = mMaxValue;
     }
-
+    //设置区域填充颜色的透明度（0-255）
     public void setRegionAlpha(int mRegionAlpha) {
         this.mRegionAlpha = mRegionAlpha;
     }
-
+    //设置区域填充颜色
     public void setRegionColor(int mRegionColor) {
         this.mRegionColor = mRegionColor;
     }
-
+    //设置蜘蛛网线的颜色
     public void setNetColor(int mNetColor) {
         this.mNetColor = mNetColor;
     }
-
+    //设置点的颜色
     public void setPointColor(int mPointColor) {
         this.mPointColor = mPointColor;
     }
-
+    //设置标题的字体颜色
     public void setTextColor(int mTextColor) {
         this.mTextColor = mTextColor;
     }
-
+    //设置标题的字体大小
     public void setTextSize(int mTextSize) {
         this.mTextSize = mTextSize;
     }
-
-    public List<NetViewData> getMdataList() {
-        return mdataList;
-    }
-
+    //设置数据源
     public void setMdataList(List<NetViewData> mdataList) {
         this.mdataList = mdataList;
-//        invalidate();
     }
 
 }

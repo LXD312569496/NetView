@@ -17,15 +17,11 @@ public class MainActivity extends AppCompatActivity {
         list.add(new NetViewData("语文", 80));
         list.add(new NetViewData("数学", 90));
         list.add(new NetViewData("英语", 70));
-        list.add(new NetViewData("物理", 50));
+        list.add(new NetViewData("物理", 100));
         list.add(new NetViewData("化学", 80));
-//        list.add(new NetViewData("冬瓜6", 80));
-//        list.add(new NetViewData("冬瓜7", 80));
-//        list.add(new NetViewData("冬瓜8", 80));
 
 
         NetView netView = (NetView) findViewById(R.id.netview);
-        netView.setMaxValue(100);
         netView.setMdataList(list);
     }
 }

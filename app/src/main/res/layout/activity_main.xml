@@ -10,11 +10,16 @@
         android:id="@+id/netview"
         android:layout_width="400dp"
         android:layout_height="400dp"
-        app:layerNum="5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:regionColor="#1e0ce4" />
+        app:layerNum="5"
+        app:maxValue="100"
+        app:netColor="#FF0000FF"
+        android:alpha="100"
+        app:regionColor="#FFFFFF00"
+        app:textSize="20sp"
+        app:texttColor="#FF000000" />
 
 </android.support.constraint.ConstraintLayout>
