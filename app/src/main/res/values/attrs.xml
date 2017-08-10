@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NetView">
+        <attr name="regionAlpha" format="color" />
+        <attr name="regionColor" format="color" />
+        <attr name="netColor" format="color" />
+        <attr name="pointColor" format="color" />
+        <attr name="texttColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="layerNum" format="integer" />
+        <attr name="maxValue" format="float" />
+
+
+    </declare-styleable>
+
+</resources>
