@@ -14,57 +14,61 @@
 - PointColor 点的颜色
 + TextColor  字体的颜色
 — TextSize  字体的大小
-### 用法（Usage）：
 
+### 用法（Usage）：
+    //设置边数，也可以不用设置，会根据传进的list长度进行绘制
     public void setEdgeNum(int mEdgeNum) {
         this.mEdgeNum = mEdgeNum;
     }
-
+    //设置蜘蛛网的层数，默认为3层
     public void setLayerNum(int mLayerNum) {
         this.mLayerNum = mLayerNum;
     }
-
+    //设置最大值
     public void setMaxValue(float mMaxValue) {
         this.mMaxValue = mMaxValue;
     }
-
+    //设置区域填充颜色的透明度（0-255）
     public void setRegionAlpha(int mRegionAlpha) {
         this.mRegionAlpha = mRegionAlpha;
     }
-
+     //设置区域填充颜色
     public void setRegionColor(int mRegionColor) {
         this.mRegionColor = mRegionColor;
     }
-
+    //设置蜘蛛网线的颜色
     public void setNetColor(int mNetColor) {
         this.mNetColor = mNetColor;
     }
-
+    //设置点的颜色
     public void setPointColor(int mPointColor) {
         this.mPointColor = mPointColor;
     }
-
+    //设置标题的字体颜色
     public void setTextColor(int mTextColor) {
         this.mTextColor = mTextColor;
     }
-
+    //设置标题的字体大小
     public void setTextSize(int mTextSize) {
         this.mTextSize = mTextSize;
     }
-    
+    //设置数据源
     public void setMdataList(List<NetViewData> mdataList) {
         this.mdataList = mdataList;
-    }
-
+    }
+    
+   
+    
 ### 例子（Example）
-    XML布局文件（若部分属性没有设置，则使用默认属性）：
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    
+    XML布局文件（若部分属性没有设置，则使用默认属性）
+    
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.asus.netview.MainActivity">
-
     <com.example.asus.netview.NetView
         android:id="@+id/netview"
         android:layout_width="400dp"
@@ -81,34 +85,29 @@
         app:textSize="20sp"
         app:texttColor="#FF000000" />
     </android.support.constraint.ConstraintLayout>
-
-    在activity中使用
-    public class MainActivity extends AppCompatActivity {
-
+    
+    在activity中使用
+    
+    public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        
         List<NetViewData> list = new ArrayList<>();
         list.add(new NetViewData("语文", 80));
         list.add(new NetViewData("数学", 90));
         list.add(new NetViewData("英语", 70));
         list.add(new NetViewData("物理", 100));
         list.add(new NetViewData("化学", 80));
-
-
+        
         NetView netView = (NetView) findViewById(R.id.netview);
         netView.setMdataList(list);
-    }
-}
-    
-    
-    
-    
-    
-    
-    
+        }
+       }
+       
+### 欢迎大家提出意见！
+   
     
     
     
