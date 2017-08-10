@@ -4,6 +4,9 @@
 刚好最近在学习自定义View方面的知识，然后就看了别人的自定义蜘蛛网控件源码后，把学习到的东西实践了一下，做得不好的地方，还望大家指出。
 
 先看看效果图：
+![](https://github.com/LXD312569496/NetView/blob/master/picture/zhizhu4.jpg)
+![](https://github.com/LXD312569496/NetView/blob/master/picture/zhizhu5.jpg)
+![](https://github.com/LXD312569496/NetView/blob/master/picture/zhizhu6.jpg)
 
 
 
