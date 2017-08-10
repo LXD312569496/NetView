@@ -116,11 +116,12 @@ Math.cos(x)表示x 的余弦值。返回的是 -1.0 到 1.0 之间的数；
 解决思路：根据三角形的正玄、余弦来得值；
 假设一个圆的圆心坐标是(a,b)，半径为r，
 则圆上每个点   X坐标=a + Math.sin(2*Math.PI / 360) * r ；Y坐标=b + Math.cos(2*Math.PI / 360) * r ；
-    private void drawNet(Canvas canvas) {
+        
+        private void drawNet(Canvas canvas) {
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(mNetColor);
-
+        
         for (int j = 1; j <= mLayerNum; j++) {
             for (int i = 0; i < mEdgeNum; i++) {
                 Path path = new Path();
@@ -138,22 +139,22 @@ Math.cos(x)表示x 的余弦值。返回的是 -1.0 到 1.0 之间的数；
 <br>根据所占比例，计算出改点距离圆心的长度，然后再去步骤一的公式计算出该点的x坐标和y坐标
 <br>利用path将每一个点进行连接起来就可以了（如果是第一个点，则利用moveTo方法移动下一次操作的起点位置
 ），最后利用close方法形成封闭路径
+    
     //绘制阴影部分
     private void drawRegion(Canvas canvas) {
         Path path = new Path();
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
-
         for (int i = 0; i < mEdgeNum; i++) {
             float x = (float) (mdataList.get(i).getValue() / mMaxValue * mRadius * Math.cos(2 * PI / 360 * 360 / mEdgeNum * i));
             float y = (float) (mdataList.get(i).getValue() / mMaxValue * mRadius * Math.sin(2 * PI / 360 * 360 / mEdgeNum * i));
-
+    
             paint.setColor(mPointColor);
             canvas.drawPoint(x, y, paint);
-
+    
             paint.setColor(mRegionColor);
             paint.setAlpha(mRegionAlpha);
-
+    
             if (i == 0) {
                 path.moveTo(x, y);
             }
@@ -165,8 +166,9 @@ Math.cos(x)表示x 的余弦值。返回的是 -1.0 到 1.0 之间的数；
     
 3. 绘制标题
 <br>先要利用Rect计算出字体所占的长度和高度，再计算出每个顶点的坐标。因为点位于不同的象限，所以字体的位置计算方法会不一样。
+     
      //绘制文字
-    private void drawText(Canvas canvas) {
+        private void drawText(Canvas canvas) {
         Paint paint = new Paint();
         paint.setColor(mTextColor);
         paint.setStyle(Paint.Style.FILL);
@@ -178,7 +180,7 @@ Math.cos(x)表示x 的余弦值。返回的是 -1.0 到 1.0 之间的数；
             paint.getTextBounds(mdataList.get(i).getTitle(), 0, mdataList.get(i).getTitle().length(), rect);
             float width = rect.width();
             float height = rect.height();
-
+    
             if (x >= 0 && y >= 0) {
                 canvas.drawText(mdataList.get(i).getTitle(), x, y, paint);
             } else if (x >= 0 && y <= 0) {
