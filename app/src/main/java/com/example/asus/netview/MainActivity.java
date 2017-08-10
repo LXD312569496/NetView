@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         list.add(new NetViewData("英语", 70));
         list.add(new NetViewData("物理", 100));
         list.add(new NetViewData("化学", 80));
+        list.add(new NetViewData("生物", 100));
 
 
         NetView netView = (NetView) findViewById(R.id.netview);
