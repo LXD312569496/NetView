@@ -6,11 +6,11 @@
 先看看效果图：
 
 支持的属性:
-    LayerNum 蜘蛛网的层数（包括最外层）
-   mMaxValue 最大值
-   mRegionAlpha  阴影部分的透明度
-    mRegionColor  阴影部分的颜色
-    mNetColor  网格的颜色
-    mPointColor 点的颜色
-     mTextColor  字体的颜色
-    mTextSize  字体的大小
+- LayerNum 蜘蛛网的层数（包括最外层）
++ MaxValue 最大值
+* RegionAlpha  阴影部分的透明度
++ RegionColor  阴影部分的颜色
++ NetColor  网格的颜色
++ PointColor 点的颜色
++ TextColor  字体的颜色
++ TextSize  字体的大小
