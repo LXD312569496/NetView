@@ -108,8 +108,7 @@
        
 ### 绘制思路
 1. 绘制网格线
-    <br>
-利用数学知识进行绘制：正多边形的顶点，都在它的外交圆上面。
+<br>利用数学知识进行绘制：正多边形的顶点，都在它的外交圆上面。
 Math.sin(x)表示x 的正玄值，返回值在 -1.0 到 1.0 之间；
 Math.cos(x)表示x 的余弦值。返回的是 -1.0 到 1.0 之间的数；
 这两个函数中的X 都是指的“弧度”而非“角度”，弧度的计算公式为： 2*PI/360*角度；
@@ -117,17 +116,80 @@ Math.cos(x)表示x 的余弦值。返回的是 -1.0 到 1.0 之间的数；
 解决思路：根据三角形的正玄、余弦来得值；
 假设一个圆的圆心坐标是(a,b)，半径为r，
 则圆上每个点   X坐标=a + Math.sin(2*Math.PI / 360) * r ；Y坐标=b + Math.cos(2*Math.PI / 360) * r ；
+    private void drawNet(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(mNetColor);
+
+        for (int j = 1; j <= mLayerNum; j++) {
+            for (int i = 0; i < mEdgeNum; i++) {
+                Path path = new Path();
+                path.lineTo((float) (1.0 / mLayerNum * j * mRadius), 0);
+                path.lineTo((float) (1.0 / mLayerNum * j * mRadius * Math.cos(2 * PI / 360 * 360 / mEdgeNum)),
+                        (float) (1.0 / mLayerNum * j * mRadius * Math.sin(2 * PI / 360 * 360 / mEdgeNum)));
+                path.close();
+                canvas.drawPath(path, paint);
+                canvas.rotate(360 / mEdgeNum);
+            }
+        }
+        }
 
 2. 绘制填充区域
-<br>
-根据所占比例，计算出改点距离圆心的长度，然后再去步骤一的公式计算出该点的x坐标和y坐标
-<br>
-利用path将每一个点进行连接起来就可以了（如果是第一个点，则利用moveTo方法移动下一次操作的起点位置
+<br>根据所占比例，计算出改点距离圆心的长度，然后再去步骤一的公式计算出该点的x坐标和y坐标
+<br>利用path将每一个点进行连接起来就可以了（如果是第一个点，则利用moveTo方法移动下一次操作的起点位置
 ），最后利用close方法形成封闭路径
+    //绘制阴影部分
+    private void drawRegion(Canvas canvas) {
+        Path path = new Path();
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.FILL);
 
+        for (int i = 0; i < mEdgeNum; i++) {
+            float x = (float) (mdataList.get(i).getValue() / mMaxValue * mRadius * Math.cos(2 * PI / 360 * 360 / mEdgeNum * i));
+            float y = (float) (mdataList.get(i).getValue() / mMaxValue * mRadius * Math.sin(2 * PI / 360 * 360 / mEdgeNum * i));
+
+            paint.setColor(mPointColor);
+            canvas.drawPoint(x, y, paint);
+
+            paint.setColor(mRegionColor);
+            paint.setAlpha(mRegionAlpha);
+
+            if (i == 0) {
+                path.moveTo(x, y);
+            }
+            path.lineTo(x, y);
+        }
+        path.close();
+        canvas.drawPath(path, paint);
+        }
+    
 3. 绘制标题
 <br>先要利用Rect计算出字体所占的长度和高度，再计算出每个顶点的坐标。因为点位于不同的象限，所以字体的位置计算方法会不一样。
-       
+     //绘制文字
+    private void drawText(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setColor(mTextColor);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setTextSize(mTextSize);
+        for (int i = 0; i < mEdgeNum; i++) {
+            float x = (float) (mRadius * Math.cos(2 * PI / 360 * 360 / mEdgeNum * i));
+            float y = (float) (mRadius * Math.sin(2 * PI / 360 * 360 / mEdgeNum * i));
+            Rect rect = new Rect();
+            paint.getTextBounds(mdataList.get(i).getTitle(), 0, mdataList.get(i).getTitle().length(), rect);
+            float width = rect.width();
+            float height = rect.height();
+
+            if (x >= 0 && y >= 0) {
+                canvas.drawText(mdataList.get(i).getTitle(), x, y, paint);
+            } else if (x >= 0 && y <= 0) {
+                canvas.drawText(mdataList.get(i).getTitle(), x, y - height, paint);
+            } else if (x <= 0 && y <= 0) {
+                canvas.drawText(mdataList.get(i).getTitle(), x - width, y - height, paint);
+            } else if (x <= 0 && y >= 0) {
+                canvas.drawText(mdataList.get(i).getTitle(), x - width, y, paint);
+            }
+        }
+        }       
        
 ### 欢迎大家提出意见！
    
